@@ -29,6 +29,7 @@ func (table *UserBasic) TableName() string {
 func FindUserByPwdAndName(name, password string) UserBasic {
 	user := UserBasic{}
 	utils.DB.Where("name=? and pass_word=?", name, password).First(&user)
+	utils.DB.Model(&user).Where("")
 	return user
 }
 

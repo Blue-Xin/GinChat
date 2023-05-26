@@ -46,6 +46,28 @@ paths:
             type: string
       tags:
       - 删除用户
+  /user/findUserPwdAndName:
+    post:
+      consumes:
+      - multipart/form-data
+      parameters:
+      - description: 用户名
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: 密码
+        in: formData
+        name: password
+        required: true
+        type: string
+      responses:
+        "200":
+          description: code":,"message":}
+          schema:
+            type: string
+      tags:
+      - 登录
   /user/getUserList:
     get:
       responses:

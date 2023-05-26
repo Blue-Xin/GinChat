@@ -106,18 +106,16 @@ func UpdateUser(c *gin.Context) {
 	})
 }
 
-// @Tags 修改用户
+// @Tags 登录
 // @Accept multipart/form-data
 // @Success 200 {string} json{"code":,"message":}
 // @Param name formData string true "用户名"
 // @Param password formData string true "密码"
-// @Param email formData string true "邮箱"
-// @Param phone formData string true "电话"
-// @Param id formData string true "id"
-// @Router /user/updateUser [post]
+// @Router /user/findUserPwdAndName [post]
 func FindUserPwdAndName(c *gin.Context) {
-	name := c.Query("name")
-	password := c.Query("password")
+	data := models.UserBasic{}
+	name := c.PostForm("name")
+	password := c.PostForm("password")
 	user := models.FindByName(name)
 	if utils.IsBlank(user.Name) {
 		c.JSON(-1, gin.H{
@@ -132,7 +130,11 @@ func FindUserPwdAndName(c *gin.Context) {
 		})
 		return
 	}
+
+	pwd := utils.MakePassword(password, user.Salt)
+
+	data = models.FindUserByPwdAndName(name, pwd)
 	c.JSON(200, gin.H{
-		"message": "登录成功",
+		"message": data,
 	})
 }

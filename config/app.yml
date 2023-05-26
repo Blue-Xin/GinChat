@@ -1,2 +1,3 @@
 mysql:
-  dns: root:Rhw000427@tcp(127.0.0.1:3306)/ginchat?charset=utf8mb4&parseTime=True&loc=Local
+#  dns: root:Rhw000427@tcp(127.0.0.1:3306)/ginchat?charset=utf8mb4&parseTime=True&loc=Local
+  dns: root:Rhw000427@tcp(103.158.37.250:3306)/ginchat?charset=utf8mb4&parseTime=True&loc=Local
